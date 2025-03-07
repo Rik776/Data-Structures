@@ -78,9 +78,11 @@ public boolean remove(Object o) {
         auxNode = auxNode.getNext();
     }
     auxNode.setNext(auxNode.getNext().getNext());
+    size--;
     return true;
     }else if (o == head.getData()) {
         head = head.getNext();
+        size--;
         return true;
     }
     return false;

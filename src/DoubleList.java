@@ -2,119 +2,118 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.ListIterator;
 
-@SuppressWarnings("rawtypes")
-public class DoubleList<T>  implements java.util.List  {
-  private NodeDouble<T> head;
-  private NodeDouble<T> tail;
-  private int size;
-public DoubleList() {
-    size = 0;
-    head = null;
-    tail = null;
-}
-@Override
-public int size() {
-   return size;
-}
-@Override
-public boolean isEmpty() {
-   return head == null;
-   }
-@Override
-public boolean contains(Object o) {
-    NodeDouble<T> auxNode = head;
-    while (auxNode.getData()!= o ) {
-        auxNode = auxNode.getNext();
-        if (auxNode.getNext()==null&& auxNode.getData()!=o) {
-            return false;
-        }
+    @SuppressWarnings("rawtypes")
+    public class DoubleList<T>  implements java.util.List  {
+    private NodeDouble<T> head;
+    private NodeDouble<T> tail;
+    private int size;
+    public DoubleList() {
+        size = 0;
+        head = null;
+        tail = null;
     }
-    return true;
-}
-
-@Override
-public Object[] toArray() {
-    Object[] object = new Object[size-1];
-    NodeDouble<T> nodeAux = head;
-    int i = 0;
-    while (nodeAux.getNext()!=null) {
-        object[i]=nodeAux.getData();
-        nodeAux = nodeAux.getNext();
-        i++;
+    @Override
+    public int size() {
+    return size;
     }
-    return object;
-
-
-}
-@Override
-public Object[] toArray(Object[] a) {
-   Object[] object = new Object[a.length];
-    NodeDouble<T> nodeAux = head;
-    int i = 0;
-    while (nodeAux.getNext()!=null && i< a.length ) {
-        object[i]=nodeAux.getData();
-        nodeAux = nodeAux.getNext();
-        i++;
+    @Override
+    public boolean isEmpty() {
+    return head == null;
     }
-    return object;
-
-}
-@SuppressWarnings("unchecked")
-@Override
-public boolean add(Object e) {
-    NodeDouble<T> auxNode = new NodeDouble<T>((T)e);
-    if (head==null) {
-        head = auxNode;
-        tail = auxNode;
-        size++;
-    }else{
-        auxNode.setPrevius(tail);
-        tail.setNext(auxNode);
-        tail = auxNode;
-        size++;
-    }
-    return tail ==auxNode;
-}
-@Override
-public boolean remove(Object o) {
-    NodeDouble<T> auxNode = head;
-    if (contains(o)&& o != head.getData()) {
+    @Override
+    public boolean contains(Object o) {
+        NodeDouble<T> auxNode = head;
         while (auxNode.getData()!= o ) {
-        auxNode = auxNode.getNext();
-    }
-    if (auxNode.getNext()==null) {
-        auxNode.getPrevius().setNext(null);;
-    }else{
-    auxNode.getNext().setPrevius(auxNode.getPrevius());
-    auxNode.getPrevius().setNext(auxNode.getNext());
-    }
-    size--;
-    return true;
-    }else if (o == head.getData()) {
-        head = head.getNext();
-        head.setPrevius(null);
-    size--;
+            auxNode = auxNode.getNext();
+            if (auxNode.getNext()==null&& auxNode.getData()!=o) {
+                return false;
+            }
+        }
         return true;
     }
-    return false;
-}
-@Override
-public boolean containsAll(Collection c) {
-    for (Object object : c) {
-        if (!contains(object)) {
-            return false;
-         }
-    }
 
-    return true;
-}
-@Override
-public boolean addAll(Collection c) {
-    if (!c.isEmpty()) {
-     for (Object object : c) {
-        add(object);
-    }   
-    size = size + c.size();
+    @Override
+    public Object[] toArray() {
+        Object[] object = new Object[size-1];
+        NodeDouble<T> nodeAux = head;
+        int i = 0;
+        while (nodeAux.getNext()!=null) {
+            object[i]=nodeAux.getData();
+            nodeAux = nodeAux.getNext();
+            i++;
+        }
+        return object;
+
+
+    }
+    @Override
+    public Object[] toArray(Object[] a) {
+    Object[] object = new Object[a.length];
+        NodeDouble<T> nodeAux = head;
+        int i = 0;
+        while (nodeAux.getNext()!=null && i< a.length ) {
+            object[i]=nodeAux.getData();
+            nodeAux = nodeAux.getNext();
+            i++;
+        }
+        return object;
+
+    }
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean add(Object e) {
+        NodeDouble<T> auxNode = new NodeDouble<T>((T)e);
+        if (head==null) {
+            head = auxNode;
+            tail = auxNode;
+            size++;
+        }else{
+            auxNode.setPrevius(tail);
+            tail.setNext(auxNode);
+            tail = auxNode;
+            size++;
+        }
+        return tail ==auxNode;
+    }
+    @Override
+    public boolean remove(Object o) {
+        NodeDouble<T> auxNode = head;
+        if (contains(o)&& o != head.getData()) {
+            while (auxNode.getData()!= o ) {
+            auxNode = auxNode.getNext();
+        }
+        if (auxNode.getNext()==null) {
+            auxNode.getPrevius().setNext(null);;
+        }else{
+        auxNode.getNext().setPrevius(auxNode.getPrevius());
+        auxNode.getPrevius().setNext(auxNode.getNext());
+        }
+        size--;
+        return true;
+        }else if (o == head.getData()) {
+            head = head.getNext();
+            head.setPrevius(null);
+        size--;
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean containsAll(Collection c) {
+        for (Object object : c) {
+            if (!contains(object)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    @Override
+    public boolean addAll(Collection c) {
+        if (!c.isEmpty()) {
+        for (Object object : c) {
+            add(object);
+        }   
 
     return true;
     
@@ -137,7 +136,6 @@ public boolean addAll(int index, Collection c) {
     }for (Object object : c) {
         add(aux++, object);;
     }
-    size = size+c.size();
     return true;
     }
     return false;
@@ -150,7 +148,6 @@ public boolean removeAll(Collection c) {
      for (Object object : c) {
         remove(object);
      }
-    size = size - c.size();
 
      return true;
    }
@@ -220,7 +217,6 @@ public void add(int index, Object element) {
     if (index == 0) {
         newNode.setNext(head);
         head=newNode;
-        size++;
     }else{
     while (aux!=index-1 && nodeAux.getNext()!=null) {
         nodeAux = nodeAux.getNext();
@@ -228,9 +224,8 @@ public void add(int index, Object element) {
     }
     newNode.setNext(nodeAux.getNext());
     nodeAux.setNext(newNode);
-    size++;
     }
-    
+    size++;
  }
 @Override
 public Object remove(int index) {
