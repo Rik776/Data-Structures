@@ -5,12 +5,10 @@ import java.util.ListIterator;
 @SuppressWarnings("rawtypes")
 public class List<T>  implements java.util.List  {
   private Node<T> head;
-  private Node<T> tail;
   private int size;
 public List() {
     size = 0;
     head = null;
-    tail = null;
 }
 @Override
 public int size() {
@@ -64,36 +62,25 @@ public Object[] toArray(Object[] a) {
 public boolean add(Object e) {
     Node<T> auxNode = new Node<T>((T)e);
     if (head==null) {
-        head = auxNode;
-        tail = auxNode;
+        head= auxNode;
         size++;
     }else{
-        auxNode.setPrevius(tail);
-        tail.setNext(auxNode);
-        tail = auxNode;
+        verifyTail().setNext(auxNode);
         size++;
     }
-    return tail ==auxNode;
+    return verifyTail() ==auxNode;
 }
 @Override
 public boolean remove(Object o) {
     Node<T> auxNode = head;
     if (contains(o)&& o != head.getData()) {
-        while (auxNode.getData()!= o ) {
+        while (auxNode.getNext().getData()!= o ) {
         auxNode = auxNode.getNext();
     }
-    if (auxNode.getNext()==null) {
-        auxNode.getPrevius().setNext(null);;
-    }else{
-    auxNode.getNext().setPrevius(auxNode.getPrevius());
-    auxNode.getPrevius().setNext(auxNode.getNext());
-    }
-    size--;
+    auxNode.setNext(auxNode.getNext().getNext());
     return true;
     }else if (o == head.getData()) {
         head = head.getNext();
-        head.setPrevius(null);
-    size--;
         return true;
     }
     return false;
@@ -105,7 +92,6 @@ public boolean containsAll(Collection c) {
             return false;
          }
     }
-
     return true;
 }
 @Override
@@ -114,10 +100,7 @@ public boolean addAll(Collection c) {
      for (Object object : c) {
         add(object);
     }   
-    size = size + c.size();
-
     return true;
-    
     }
     return false;
     
@@ -150,8 +133,6 @@ public boolean removeAll(Collection c) {
      for (Object object : c) {
         remove(object);
      }
-    size = size - c.size();
-
      return true;
    }
    return false;
@@ -200,7 +181,7 @@ public Object set(int index, Object element) {
             head = auxNode;
         }else if (index==size-1) {
             auxObject = get(index);
-            tail.setNext(auxNode);
+            verifyTail().setNext(auxNode);
         }else if (index>0 && index<size-1) {
             auxObject = get(index);
             add(element);
@@ -220,7 +201,6 @@ public void add(int index, Object element) {
     if (index == 0) {
         newNode.setNext(head);
         head=newNode;
-        size++;
     }else{
     while (aux!=index-1 && nodeAux.getNext()!=null) {
         nodeAux = nodeAux.getNext();
@@ -228,9 +208,8 @@ public void add(int index, Object element) {
     }
     newNode.setNext(nodeAux.getNext());
     nodeAux.setNext(newNode);
-    size++;
     }
-    
+    size++;
  }
 @Override
 public Object remove(int index) {
@@ -282,7 +261,7 @@ public ListIterator listIterator(int index) {
 @Override
 public java.util.List subList(int fromIndex, int toIndex) {
     int intAux = 0;
-    List newList = new List<T>();
+    DoubleList newList = new DoubleList<T>();
     if (fromIndex>=0 && fromIndex<toIndex && toIndex<=size-1) {
         for (Object object : this) {
 
@@ -311,5 +290,12 @@ public Iterator<T> iterator() {
     }
    };
    return iterator;
+}
+public Node<T> verifyTail(){
+    Node<T> nodeAux = head;
+    while (nodeAux.getNext()!=null) {
+        nodeAux = nodeAux.getNext();
+    }
+    return nodeAux;
 }
 }

@@ -3,12 +3,14 @@ import java.util.Iterator;
 import java.util.ListIterator;
 
 @SuppressWarnings("rawtypes")
-public class List<T>  implements java.util.List  {
-  private Node<T> head;
+public class DoubleList<T>  implements java.util.List  {
+  private NodeDouble<T> head;
+  private NodeDouble<T> tail;
   private int size;
-public List() {
+public DoubleList() {
     size = 0;
     head = null;
+    tail = null;
 }
 @Override
 public int size() {
@@ -20,7 +22,7 @@ public boolean isEmpty() {
    }
 @Override
 public boolean contains(Object o) {
-    Node<T> auxNode = head;
+    NodeDouble<T> auxNode = head;
     while (auxNode.getData()!= o ) {
         auxNode = auxNode.getNext();
         if (auxNode.getNext()==null&& auxNode.getData()!=o) {
@@ -33,7 +35,7 @@ public boolean contains(Object o) {
 @Override
 public Object[] toArray() {
     Object[] object = new Object[size-1];
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     int i = 0;
     while (nodeAux.getNext()!=null) {
         object[i]=nodeAux.getData();
@@ -47,7 +49,7 @@ public Object[] toArray() {
 @Override
 public Object[] toArray(Object[] a) {
    Object[] object = new Object[a.length];
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     int i = 0;
     while (nodeAux.getNext()!=null && i< a.length ) {
         object[i]=nodeAux.getData();
@@ -60,27 +62,38 @@ public Object[] toArray(Object[] a) {
 @SuppressWarnings("unchecked")
 @Override
 public boolean add(Object e) {
-    Node<T> auxNode = new Node<T>((T)e);
+    NodeDouble<T> auxNode = new NodeDouble<T>((T)e);
     if (head==null) {
-        head= auxNode;
+        head = auxNode;
+        tail = auxNode;
         size++;
     }else{
-        verifyTail().setNext(auxNode);
+        auxNode.setPrevius(tail);
+        tail.setNext(auxNode);
+        tail = auxNode;
         size++;
     }
-    return verifyTail() ==auxNode;
+    return tail ==auxNode;
 }
 @Override
 public boolean remove(Object o) {
-    Node<T> auxNode = head;
+    NodeDouble<T> auxNode = head;
     if (contains(o)&& o != head.getData()) {
-        while (auxNode.getNext().getData()!= o ) {
+        while (auxNode.getData()!= o ) {
         auxNode = auxNode.getNext();
     }
-    auxNode.setNext(auxNode.getNext().getNext());
+    if (auxNode.getNext()==null) {
+        auxNode.getPrevius().setNext(null);;
+    }else{
+    auxNode.getNext().setPrevius(auxNode.getPrevius());
+    auxNode.getPrevius().setNext(auxNode.getNext());
+    }
+    size--;
     return true;
     }else if (o == head.getData()) {
         head = head.getNext();
+        head.setPrevius(null);
+    size--;
         return true;
     }
     return false;
@@ -92,6 +105,7 @@ public boolean containsAll(Collection c) {
             return false;
          }
     }
+
     return true;
 }
 @Override
@@ -100,7 +114,10 @@ public boolean addAll(Collection c) {
      for (Object object : c) {
         add(object);
     }   
+    size = size + c.size();
+
     return true;
+    
     }
     return false;
     
@@ -108,7 +125,7 @@ public boolean addAll(Collection c) {
 @Override
 public boolean addAll(int index, Collection c) {
     int aux = 0;
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     if (index == 0) {
         for (Object object : c) {
             add(aux++, object);
@@ -133,6 +150,8 @@ public boolean removeAll(Collection c) {
      for (Object object : c) {
         remove(object);
      }
+    size = size - c.size();
+
      return true;
    }
    return false;
@@ -156,7 +175,7 @@ public void clear() {
 }
 @Override
 public Object get(int index) {
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     int aux = 0;
     if (size>index && index>=0) {
       while (aux != index && nodeAux.getNext() != null ) {
@@ -172,7 +191,7 @@ public Object get(int index) {
 public Object set(int index, Object element) {
     Object auxObject;
    if (contains(element)) {
-    Node<T> auxNode = new Node<T>((T)get(indexOf(element)));
+    NodeDouble<T> auxNode = new NodeDouble<T>((T)get(indexOf(element)));
     
     remove(element);
         if (index == 0) {
@@ -181,7 +200,7 @@ public Object set(int index, Object element) {
             head = auxNode;
         }else if (index==size-1) {
             auxObject = get(index);
-            verifyTail().setNext(auxNode);
+            tail.setNext(auxNode);
         }else if (index>0 && index<size-1) {
             auxObject = get(index);
             add(element);
@@ -195,12 +214,13 @@ throw new NullPointerException("The object is not Listed");
 @SuppressWarnings("unchecked")
 @Override
 public void add(int index, Object element) {
-    Node<T> newNode = new Node<T>((T) element);
+    NodeDouble<T> newNode = new NodeDouble<T>((T) element);
     int aux = 0;
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     if (index == 0) {
         newNode.setNext(head);
         head=newNode;
+        size++;
     }else{
     while (aux!=index-1 && nodeAux.getNext()!=null) {
         nodeAux = nodeAux.getNext();
@@ -208,8 +228,9 @@ public void add(int index, Object element) {
     }
     newNode.setNext(nodeAux.getNext());
     nodeAux.setNext(newNode);
-    }
     size++;
+    }
+    
  }
 @Override
 public Object remove(int index) {
@@ -221,7 +242,7 @@ public Object remove(int index) {
 }
 @Override
 public int indexOf(Object o) {
-    Node<T> auxNode = head;
+    NodeDouble<T> auxNode = head;
     int auxInt = 0;
     if (contains(o)) {
         while (auxNode.getNext()!= null) {
@@ -236,7 +257,7 @@ public int indexOf(Object o) {
 }
 @Override
 public int lastIndexOf(Object o) {
-    Node<T> auxNode = head;
+    NodeDouble<T> auxNode = head;
     int auxInt=0;
     if (contains(o)) {
         while (auxNode.getNext()!=null) {
@@ -277,7 +298,7 @@ throw new UnsupportedOperationException("Wrong index");
 @Override
 public Iterator<T> iterator() {
    Iterator<T> iterator = new Iterator<T>() {
-    Node<T> nodeAux = head;
+    NodeDouble<T> nodeAux = head;
     @Override
     public boolean hasNext() {
         return nodeAux!=null;
@@ -290,12 +311,5 @@ public Iterator<T> iterator() {
     }
    };
    return iterator;
-}
-public Node<T> verifyTail(){
-    Node<T> nodeAux = head;
-    while (nodeAux.getNext()!=null) {
-        nodeAux = nodeAux.getNext();
-    }
-    return nodeAux;
 }
 }
