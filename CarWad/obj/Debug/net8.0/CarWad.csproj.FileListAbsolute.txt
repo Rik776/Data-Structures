@@ -1,0 +1,14 @@
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.AssemblyInfoInputs.cache
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.AssemblyInfo.cs
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.csproj.CoreCompileInputs.cache
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\bin\Debug\net8.0\CarWad.exe
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\bin\Debug\net8.0\CarWad.deps.json
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\bin\Debug\net8.0\CarWad.runtimeconfig.json
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\bin\Debug\net8.0\CarWad.dll
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\bin\Debug\net8.0\CarWad.pdb
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.dll
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\refint\CarWad.dll
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.pdb
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\CarWad.genruntimeconfig.cache
+C:\Users\ricar\OneDrive\Desktop\Universidad\Projects\CarWad\obj\Debug\net8.0\ref\CarWad.dll
