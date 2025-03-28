@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\CarWad\\CarWad.csproj": {}
+    "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\Data Structures\\CarWad\\CarWad.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\CarWad\\CarWad.csproj": {
+    "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\Data Structures\\CarWad\\CarWad.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\CarWad\\CarWad.csproj",
+        "projectUniqueName": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\Data Structures\\CarWad\\CarWad.csproj",
         "projectName": "CarWad",
-        "projectPath": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\CarWad\\CarWad.csproj",
+        "projectPath": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\Data Structures\\CarWad\\CarWad.csproj",
         "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\CarWad\\obj\\",
+        "outputPath": "C:\\Users\\ricar\\OneDrive\\Desktop\\Universidad\\Projects\\Data Structures\\CarWad\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

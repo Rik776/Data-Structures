@@ -84,9 +84,14 @@ public class Tree<T> {
     }
     public void remove(T data){
         if (root.getData().equals(data)) {
-           Node<T> auxNode = root.getRight();
+            if (!isLeaf(root)) {
+                Node<T> auxNode = root.getRight();
             root = root.getLeft();
             root.setRight(auxNode);
+            }else{
+                root = null;
+            }
+           
         }else{
             findNode(data, root);
         }

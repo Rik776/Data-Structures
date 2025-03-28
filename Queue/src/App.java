@@ -7,14 +7,9 @@ public class App {
         ints.add(4);    
         ints.add(5);    
         ints.add(6);
-        try {
-            while (ints.peak()!=null) {
-                System.out.println(ints.get());
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        System.out.println(1);
-        }
+        for (Object object : ints) {
+            System.out.println(object);
+        }       
     }
+}
 

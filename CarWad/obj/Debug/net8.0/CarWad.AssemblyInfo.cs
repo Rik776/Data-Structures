@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarWad")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4c1c31e17ce698d02b9405419decd38981db45e")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarWad")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarWad")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

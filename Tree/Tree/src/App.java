@@ -21,13 +21,16 @@ public class App {
         tree.remove(10);
         tree.remove(345);
         tree.remove(15);
+        tree.remove(14);
+        tree.remove(5);
+        tree.remove(19);
+        tree.remove(17);
+        tree.remove(13);
+        tree.remove(3);
+
 
         System.out.println(tree.contains(10));
         System.out.println(tree.contains(345));
-
-        for (Integer ints : tree.inOrder()) {
-            System.out.println(ints);
-        }
 
     }
 }

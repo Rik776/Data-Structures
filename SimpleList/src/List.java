@@ -157,7 +157,7 @@ public void clear() {
     head = null;
 }
 @Override
-public Object get(int index) {
+public T get(int index) {
     Node<T> nodeAux = head;
     int aux = 0;
     if (size>index && index>=0) {
@@ -171,8 +171,8 @@ public Object get(int index) {
 }
 @SuppressWarnings("unchecked")
 @Override
-public Object set(int index, Object element) {
-    Object auxObject;
+public T set(int index, Object element) {
+    T auxObject;
    if (contains(element)) {
     Node<T> auxNode = new Node<T>((T)get(indexOf(element)));
     
@@ -214,12 +214,13 @@ public void add(int index, Object element) {
     size++;
  }
 @Override
-public Object remove(int index) {
+public T remove(int index) {
     if (index>=0 && index <=size-1) {
-        remove(get(index));
-        return true;
+        T t = get(index);
+        remove(t);
+        return t;
     }
-    return false;
+    return null;
 }
 @Override
 public int indexOf(Object o) {
@@ -263,7 +264,7 @@ public ListIterator listIterator(int index) {
 @Override
 public java.util.List subList(int fromIndex, int toIndex) {
     int intAux = 0;
-    DoubleList newList = new DoubleList<T>();
+    List<T> newList = new List<T>();
     if (fromIndex>=0 && fromIndex<toIndex && toIndex<=size-1) {
         for (Object object : this) {
 

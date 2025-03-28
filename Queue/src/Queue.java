@@ -1,4 +1,6 @@
-public class Queue<T> {
+import java.util.Iterator;
+
+public class Queue<T> implements Iterable<T>  {
     private Node<T> head;
     private Node<T> tail;
 
@@ -32,6 +34,25 @@ public class Queue<T> {
     }
     public boolean isEmpty(){
         return head==null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>(){
+            Node<T> node = head;
+            @Override
+            public boolean hasNext() {
+                return node!=null;
+            }
+
+            @Override
+            public T next() {
+                    T t = node.getData();
+                    node = node.getNext();
+                    return t;
+            }
+
+        };
     }
 
 }
